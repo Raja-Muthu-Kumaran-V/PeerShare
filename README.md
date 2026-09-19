@@ -28,3 +28,9 @@ Peers discover each other using UDP broadcast, transfer files over TCP with RSA 
 
 # Windows
 run.bat
+Project Structure:
+src/main/java/peershare/     → core logic + JavaFX GUI
+src/test/java/peershare/     → unit tests
+db/schema.sql                → database schema
+pom.xml                      → Maven build
+run.sh / run.bat             → launch scripts
