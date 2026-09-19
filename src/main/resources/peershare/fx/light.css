@@ -1,0 +1,23 @@
+.root {
+    -ps-bg: #eef1f8;
+    -ps-surface: #ffffff;
+    -ps-surface-2: #f3f5fa;
+    -ps-surface-alt: #f8f9fd;
+    -ps-border: #e2e6f0;
+    -ps-border-faint: #eef0f6;
+    -ps-hover: #eaeefa;
+
+    -ps-text: #1c2333;
+    -ps-text-muted: #6b7280;
+
+    -ps-accent: #3b6fe0;
+    -ps-accent-hover: #3161cc;
+    -ps-accent-soft: #e6edfd;
+
+    -ps-success: #16a34a;
+    -ps-success-soft: #e3f6ea;
+    -ps-danger: #dc2626;
+    -ps-danger-soft: #fce8e8;
+    -ps-warning: #b25900;
+    -ps-warning-soft: #fff3e0;
+}

@@ -1,0 +1,269 @@
+/* Layout/shape rules shared by both themes. Colors come from light.css / dark.css,
+ * which define the -ps-* variables this file consumes. Load common.css AFTER the
+ * theme file so these rules can reference the theme's palette. */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: -ps-bg;
+}
+
+.ps-page {
+    -fx-background-color: -ps-bg;
+}
+
+/* Card: the rounded panel used for every grouped block (peer list, network status,
+ * activity log, tab content, dialogs). Mirrors the mockup's card language. */
+.ps-card {
+    -fx-background-color: -ps-surface;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: -ps-border;
+    -fx-border-width: 1;
+    -fx-padding: 14;
+}
+
+.ps-card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ps-text;
+}
+
+.ps-subtle {
+    -fx-text-fill: -ps-text-muted;
+    -fx-font-size: 11px;
+}
+
+.ps-topbar {
+    -fx-background-color: -ps-surface;
+    -fx-border-color: -ps-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10 16 10 16;
+}
+
+.ps-sidebar {
+    -fx-background-color: -ps-surface;
+    -fx-border-color: -ps-border;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 12 6 12 6;
+}
+
+.ps-sidebar-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+    -fx-text-fill: -ps-text-muted;
+    -fx-font-size: 12px;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.ps-sidebar-item:hover {
+    -fx-background-color: -ps-hover;
+}
+
+.ps-sidebar-item-selected {
+    -fx-background-color: -ps-accent-soft;
+    -fx-text-fill: -ps-accent;
+    -fx-font-weight: bold;
+}
+
+.ps-brand {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ps-text;
+}
+
+.ps-brand-accent {
+    -fx-fill: -ps-accent;
+}
+
+.ps-tagline {
+    -fx-text-fill: -ps-text-muted;
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 7 14 7 14;
+    -fx-cursor: hand;
+    -fx-text-fill: -ps-text;
+    -fx-background-color: -ps-surface-2;
+    -fx-border-color: -ps-border;
+    -fx-border-width: 1;
+}
+.button:hover { -fx-background-color: -ps-hover; }
+
+.ps-primary {
+    -fx-background-color: -ps-accent;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+    -fx-font-weight: bold;
+}
+.ps-primary:hover { -fx-background-color: -ps-accent-hover; }
+
+.ps-danger {
+    -fx-background-color: -ps-danger;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+.ps-danger:hover { -fx-opacity: 0.9; }
+
+.ps-success-btn {
+    -fx-background-color: -ps-success;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+/* Theme toggle rendered as a small pill button */
+.ps-theme-toggle {
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 5 12 5 12;
+    -fx-font-size: 11px;
+}
+
+/* Pills / status badges */
+.ps-pill {
+    -fx-background-radius: 999;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.ps-pill-success { -fx-background-color: -ps-success-soft; -fx-text-fill: -ps-success; }
+.ps-pill-danger  { -fx-background-color: -ps-danger-soft;  -fx-text-fill: -ps-danger; }
+.ps-pill-warning { -fx-background-color: -ps-warning-soft; -fx-text-fill: -ps-warning; }
+.ps-pill-neutral { -fx-background-color: -ps-surface-2;    -fx-text-fill: -ps-text-muted; }
+
+.ps-dot-online {
+    -fx-fill: -ps-success;
+}
+
+/* Text fields */
+.text-field, .password-field {
+    -fx-background-color: -ps-surface-2;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: -ps-border;
+    -fx-border-width: 1;
+    -fx-padding: 7 10 7 10;
+    -fx-text-fill: -ps-text;
+}
+.text-field:focused, .password-field:focused {
+    -fx-border-color: -ps-accent;
+}
+
+.label { -fx-text-fill: -ps-text; }
+
+.ps-field-label {
+    -fx-text-fill: -ps-text-muted;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: -ps-surface;
+    -fx-border-color: -ps-border;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.table-view .column-header-background {
+    -fx-background-color: -ps-surface-2;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -ps-border transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -ps-text-muted;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+.table-row-cell {
+    -fx-background-color: -ps-surface;
+    -fx-border-color: transparent transparent -ps-border-faint transparent;
+    -fx-text-fill: -ps-text;
+}
+.table-row-cell:odd { -fx-background-color: -ps-surface-alt; }
+.table-row-cell:selected { -fx-background-color: -ps-accent-soft; }
+.table-view .text { -fx-fill: -ps-text; }
+
+/* Lists */
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -ps-text;
+    -fx-padding: 8 6 8 6;
+}
+.list-cell:filled:selected {
+    -fx-background-color: -ps-accent-soft;
+    -fx-background-radius: 8;
+}
+
+/* Tabs */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+.tab-pane .tab {
+    -fx-background-color: -ps-surface-2;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 8 14 8 14;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: -ps-accent;
+}
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.tab-pane .tab .tab-label {
+    -fx-text-fill: -ps-text-muted;
+}
+.tab-pane .tab-content-area {
+    -fx-background-color: -ps-surface;
+    -fx-border-color: -ps-border;
+    -fx-border-radius: 0 0 10 10;
+}
+
+/* Progress bar */
+.progress-bar > .bar {
+    -fx-background-color: -ps-accent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+}
+.progress-bar > .track {
+    -fx-background-color: -ps-surface-2;
+    -fx-background-radius: 6;
+}
+
+/* Activity log */
+.ps-log {
+    -fx-control-inner-background: -ps-surface-alt;
+    -fx-text-fill: -ps-text;
+    -fx-font-family: "Consolas", "Monospaced";
+    -fx-font-size: 11px;
+}
+
+.ps-check-yes { -fx-text-fill: -ps-success; -fx-font-weight: bold; }
+.ps-check-no  { -fx-text-fill: -ps-text-muted; }
+
+.ps-banner-warning {
+    -fx-background-color: -ps-warning-soft;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+    -fx-text-fill: -ps-warning;
+}
+
+.separator *.line {
+    -fx-border-color: -ps-border;
+}
+
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

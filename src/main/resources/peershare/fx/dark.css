@@ -1,0 +1,23 @@
+.root {
+    -ps-bg: #0c1324;
+    -ps-surface: #121b30;
+    -ps-surface-2: #182339;
+    -ps-surface-alt: #101a2e;
+    -ps-border: #24304a;
+    -ps-border-faint: #1a2438;
+    -ps-hover: #1c2740;
+
+    -ps-text: #e8ecf7;
+    -ps-text-muted: #8f9ac0;
+
+    -ps-accent: #4c7cf0;
+    -ps-accent-hover: #6690f5;
+    -ps-accent-soft: #1c2c52;
+
+    -ps-success: #34d399;
+    -ps-success-soft: #123527;
+    -ps-danger: #f87171;
+    -ps-danger-soft: #3a1a1a;
+    -ps-warning: #fbbf24;
+    -ps-warning-soft: #3a2e10;
+}

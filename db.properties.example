@@ -1,0 +1,10 @@
+# MySQL connection settings for PeerShare's transfer history.
+# Matches db/schema.sql. Change these if your MySQL setup differs.
+# Use 127.0.0.1 (not localhost) so the JDBC driver connects over TCP/IP.
+# MySQL treats 'localhost' as a Unix-socket connection and '127.0.0.1' as TCP;
+# the schema grants both, but JDBC always uses TCP.
+db.host=127.0.0.1
+db.port=3306
+db.name=peershare
+db.user=peershare
+db.password=peershare_pw

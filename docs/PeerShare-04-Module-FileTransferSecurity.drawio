@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Module - File Transfer and Security" id="page-mod-transfer">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t4" value="Module: File Transfer + Security Pipeline" style="text;html=1;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="220" y="10" width="460" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="x1" value="Start" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="360" y="60" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="x2" value="User clicks 'Download Selected'&#10;on Peer B" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="150" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="x3" value="FileShareClient opens TCP&#10;connection to Peer A's&#10;FileShareServer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="x4" value="RSA-2048 handshake:&#10;exchange public keys" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="x5" value="Peer B generates AES session key,&#10;wraps it with Peer A's RSA public key,&#10;sends wrapped key" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="280" y="430" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="x6" value="Peer A unwraps AES key&#10;with its RSA private key" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="530" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="x7" value="TransferTask streams file bytes,&#10;encrypted with AES/CBC&#10;(progress bar updates live)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="300" y="620" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="x8" value="Peer B decrypts stream&#10;and writes to download folder" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="720" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="x9" value="HashUtil computes SHA-256&#10;of the received file" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="810" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="x10" value="Hash matches sender's hash?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="320" y="900" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="x11a" value="Status = SUCCESS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1000" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="x11b" value="Status = HASH_MISMATCH&#10;(file discarded/flagged)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="560" y="1000" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="y1" edge="1" parent="1" source="x1" target="x2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y2" edge="1" parent="1" source="x2" target="x3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y3" edge="1" parent="1" source="x3" target="x4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y4" edge="1" parent="1" source="x4" target="x5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y5" edge="1" parent="1" source="x5" target="x6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y6" edge="1" parent="1" source="x6" target="x7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7" edge="1" parent="1" source="x7" target="x8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y8" edge="1" parent="1" source="x8" target="x9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y9" edge="1" parent="1" source="x9" target="x10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y10" value="Yes" edge="1" parent="1" source="x10" target="x11a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y11" value="No" edge="1" parent="1" source="x10" target="x11b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

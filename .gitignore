@@ -1,0 +1,28 @@
+# Build output
+target/
+out/
+*.class
+*.jar
+!lib/mariadb-java-client.jar
+
+# Local DB credentials — real values live only on each dev's machine.
+# db.properties.example is the checked-in template; db.properties (real) is ignored.
+db.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# App runtime data (per-user local state, not project source)
+peershare-shared/

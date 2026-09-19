@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.cit.cse</groupId>
+    <artifactId>peershare</artifactId>
+    <version>2.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>PeerShare</name>
+    <description>Peer-to-Peer File Sharing over LAN - Desktop GUI edition (CS5304 Java Programming)</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>21.0.2</javafx.version>
+    </properties>
+
+    <dependencies>
+        <!-- MySQL connectivity. The MariaDB driver is used because it is wire-protocol
+             compatible with MySQL and registers itself for "jdbc:mysql://" URLs too,
+             so it works transparently against a real MySQL server. -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JavaFX GUI toolkit. The
+             os-maven-plugin extension below detects the OS classifier (linux/win/mac)
+             automatically so this same pom works unmodified on the Kali Linux box and
+             the Windows box - see build/extensions. -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+    </dependencies>
+
+    <!-- Picks the right JavaFX native classifier (linux/win/mac) automatically via
+         Maven's built-in OS detection - no extra plugin needed. This is exactly why
+         the pom works unmodified on both the Kali Linux box and the Windows box. -->
+    <profiles>
+        <profile>
+            <id>javafx-linux</id>
+            <activation><os><family>unix</family><name>linux</name></os></activation>
+            <properties><javafx.platform>linux</javafx.platform></properties>
+        </profile>
+        <profile>
+            <id>javafx-windows</id>
+            <activation><os><family>windows</family></os></activation>
+            <properties><javafx.platform>win</javafx.platform></properties>
+        </profile>
+        <profile>
+            <id>javafx-mac</id>
+            <activation><os><family>mac</family></os></activation>
+            <properties><javafx.platform>mac</javafx.platform></properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>peershare</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+            <plugin>
+                <!-- Produces a runnable peershare.jar (GUI edition). Entirely
+                     optional - see README section 3 for the no-jar way to run. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>peershare.fx.Launcher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Bundles the MariaDB driver INTO the jar so `java -jar peershare.jar`
+                     works without a separate classpath argument. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>peershare.fx.Launcher</mainClass>
+                                </transformer>
+                                <!-- Without this, shading multiple dependencies that each ship a
+                                     META-INF/services/* file (the JDBC driver's SPI registration
+                                     included) can silently let one dependency's file clobber
+                                     another's instead of merging them, causing baffling
+                                     "No suitable driver found" errors at runtime. This merges
+                                     same-named service files instead of overwriting them. -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Lets you run the app directly with `mvn javafx:run` - the
+                     recommended way to run this project now that it's JavaFX-based,
+                     since it resolves the platform-correct JavaFX runtime jars
+                     automatically (see the OS profiles above) without needing a
+                     shaded/packaged jar first. -->
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>peershare.fx.PeerShareFxApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

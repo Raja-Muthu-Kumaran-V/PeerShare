@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Module - DB Logging" id="page-mod-db">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t5" value="Module: Transfer History Logging" style="text;html=1;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="220" y="10" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="z1" value="Transfer completes&#10;(SUCCESS / FAILED / HASH_MISMATCH)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="z2" value="TransferListener fires&#10;TransferEvent" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="z3" value="peerNameResolver looks up&#10;the IP against the live&#10;PeerDiscovery registry" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="260" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="z4" value="Build TransferRecord&#10;(peer, filename, size, hash,&#10;direction, status, timestamp)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="360" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="z5" value="TransferHistoryRepository&#10;.save(record)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="300" y="460" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="z6" value="Database available?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="300" y="550" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="z7a" value="INSERT into MySQL&#10;transfer_history table" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="z7b" value="Append to in-memory list&#10;for this session only" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="650" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w1" edge="1" parent="1" source="z1" target="z2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" edge="1" parent="1" source="z2" target="z3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" edge="1" parent="1" source="z3" target="z4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" edge="1" parent="1" source="z4" target="z5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w5" edge="1" parent="1" source="z5" target="z6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w6" value="Yes" edge="1" parent="1" source="z6" target="z7a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w7" value="No" edge="1" parent="1" source="z6" target="z7b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
